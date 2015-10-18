@@ -1,6 +1,6 @@
 {
   "name": "wwvdom-script",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/wwvdom-script.js",
   "repository": {
     "type": "git",
