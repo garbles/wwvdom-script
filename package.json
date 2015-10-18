@@ -1,0 +1,30 @@
+{
+  "name": "wwvdom-script",
+  "version": "0.0.0",
+  "main": "dist/wwvdom-script.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/garbles/wwvdom-script"
+  },
+  "keywords": [
+    "virtual-dom",
+    "web",
+    "worker"
+  ],
+  "author": "Gabe Scholz",
+  "license": "MIT",
+  "scripts": {
+    "bundle": "browserify -s engine src/index.js -t babelify > dist/wwvdom-script.js",
+    "clean": "rm -rf lib/ dist/ && mkdir lib/ dist/",
+    "release": "npm run clean && npm run bundle && git add dist && git commit -m ':tada:' && npm version patch && git push origin master --tags && npm publish"
+  },
+  "homepage": "https://github.com/garlbes/wwvdom-script",
+  "devDependencies": {
+    "babel": "5.8.23",
+    "browserify": "11.2.0"
+  },
+  "dependencies": {
+    "wwvdom-constants": "*",
+    "virtual-dom": "2.1.1"
+  }
+}
