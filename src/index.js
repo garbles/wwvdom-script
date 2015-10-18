@@ -5,7 +5,7 @@ const {CREATE, DIFF} = require(`wwvdom-constants`)
 let previousNode = null
 
 onmessage = function (ev) {
-  const {type, params: {tag, props, children}} = ev.data
+  const {type, id, params: {tag, props, children}} = ev.data
   const newNode = h(tag, props, children)
 
   switch (type) {
@@ -15,7 +15,7 @@ onmessage = function (ev) {
     case DIFF:
       const patches = diff(previousNode, newNode)
     previousNode = newNode
-    postMessage(patches)
+    postMessage({id, patches})
     break
   }
 }
