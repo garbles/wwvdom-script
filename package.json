@@ -14,13 +14,16 @@
   "author": "Gabe Scholz",
   "license": "MIT",
   "scripts": {
-    "bundle": "browserify -s engine src/index.js -t babelify > dist/wwvdom-script.js",
-    "clean": "rm -rf lib/ dist/ && mkdir lib/ dist/",
-    "release": "npm run clean && npm run bundle && git add dist && git commit -m ':tada:' && npm version patch && git push origin master --tags && npm publish"
+    "clean": "rm -rf .tmp/ dist/ && mkdir .tmp/ dist/",
+    "bundle": "browserify src/index.js -t babelify > .tmp/bundle.js",
+    "stringify": "browserify src/stringify.js -t brfs > dist/wwvdom-script.js",
+    "build": "npm run clean && npm run bundle && npm run stringify",
+    "release": "npm run build && git add dist && git commit -m ':tada:' && npm version patch && git push origin master --tags && npm publish"
   },
   "homepage": "https://github.com/garlbes/wwvdom-script",
   "devDependencies": {
     "babel": "5.8.23",
+    "brfs": "1.4.1",
     "browserify": "11.2.0"
   },
   "dependencies": {
